@@ -8,7 +8,6 @@ namespace Lanches.Controllers
     {
         public IActionResult Index()
         {
-            TempData["Nome"] = "Gabriel";
             return View();
         }
 
