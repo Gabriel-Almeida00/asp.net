@@ -30,5 +30,29 @@ namespace Lanches.Models
                 CarrinhoCompraId = carrinhoId
             };
         }
+
+        public void AdciionarAoCarrinho(Lanche lacnhe)
+        {
+            var carrinhoCompraItem = _context.CarrinhoCompraItems.SingleOrDefault(
+                s => s.Lanche.LancheId == lacnhe.LancheId &&
+                s.CarrinhoCompraId == CarrinhoCompraId);
+
+            if(carrinhoCompraItem == null)
+            {
+                carrinhoCompraItem = new CarrinhoCompraItem
+                {
+                    CarrinhoCompraId = CarrinhoCompraId,
+                    Lanche = lacnhe,
+                    Quantidade = 1
+                };
+
+                _context.CarrinhoCompraItems.Add(carrinhoCompraItem);
+            }
+            else
+            {
+                carrinhoCompraItem.Quantidade++;
+            }
+            _context.SaveChanges();
+        }
     }
 }
