@@ -1,4 +1,5 @@
 ﻿using Lanches.Context;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Lanches.Models
 {
@@ -53,6 +54,30 @@ namespace Lanches.Models
                 carrinhoCompraItem.Quantidade++;
             }
             _context.SaveChanges();
+        }
+
+        public int removerDoCarrinho(Lanche lacnhe)
+        {
+            var carrinhoCompraItem = _context.CarrinhoCompraItems.SingleOrDefault(
+              s => s.Lanche.LancheId == lacnhe.LancheId &&
+              s.CarrinhoCompraId == CarrinhoCompraId);
+
+            var quantidadeLocal = 0;
+
+            if(carrinhoCompraItem != null)
+            {
+                if(carrinhoCompraItem.Quantidade > 1)
+                {
+                    carrinhoCompraItem.Quantidade--;
+                    quantidadeLocal = carrinhoCompraItem.Quantidade;
+                }
+                else
+                {
+                    _context.CarrinhoCompraItems.Remove(carrinhoCompraItem);
+                }
+            }
+            _context.SaveChanges();
+            return quantidadeLocal;
         }
     }
 }
