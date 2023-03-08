@@ -1,5 +1,5 @@
 ﻿using Lanches.Context;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lanches.Models
 {
@@ -78,6 +78,34 @@ namespace Lanches.Models
             }
             _context.SaveChanges();
             return quantidadeLocal;
+        }
+
+        public List<CarrinhoCompraItem> GetCarrinhoCompraItens()
+        {
+            return CarrinhoCompraItems ?? 
+                (CarrinhoCompraItems = 
+                     _context.CarrinhoCompraItems
+                         .Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
+                         .Include(s => s.Lanche)
+                         .ToList());
+
+         }
+
+        public void LimparCarrinho()
+        {
+            var carrinhoItens = _context.CarrinhoCompraItems
+                                .Where(carrinho => carrinho.CarrinhoCompraId == CarrinhoCompraId);   
+            
+            _context.CarrinhoCompraItems.RemoveRange(carrinhoItens);
+            _context.SaveChanges();
+        }
+
+        public decimal GetCarrinhoCompraTotal()
+        {
+            var total = _context.CarrinhoCompraItems
+                        .Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
+                        .Select(c => c.Lanche.Preco * c.Quantidade).Sum();
+            return total;
         }
     }
 }
