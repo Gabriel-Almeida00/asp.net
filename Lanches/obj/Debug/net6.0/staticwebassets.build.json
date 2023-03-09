@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YqifQkguiTBwEspQ0LQ9BNX8duzN7lZ0+x+sNXkeRxs=",
+  "Hash": "sYQ6dlTIWDKyJQE0DFEcAk+kWH3lDT0NuKL8yN9uPQs=",
   "Source": "Lanches",
   "BasePath": "_content/Lanches",
   "Mode": "Default",
@@ -134,6 +134,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\carousel13.jpg"
+    },
+    {
+      "Identity": "C:\\workspace-visual-studio-code\\Lanches\\Lanches\\wwwroot\\images\\cart-5-16.ico",
+      "SourceId": "Lanches",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\workspace-visual-studio-code\\Lanches\\Lanches\\wwwroot\\",
+      "BasePath": "_content/Lanches",
+      "RelativePath": "images/cart-5-16.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\cart-5-16.ico"
     },
     {
       "Identity": "C:\\workspace-visual-studio-code\\Lanches\\Lanches\\wwwroot\\images\\Full-Cart-icon.png",
