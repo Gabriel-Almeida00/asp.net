@@ -4,7 +4,7 @@ namespace Lanches.ViewModels
 {
     public class CarrinhoCompraViewModel
     {
-        public CarrinhoCompra carrinhoCompra { get; set; }
+        public CarrinhoCompra CarrinhoCompra { get; set; }
         public decimal CarrinhoCompraTotal { get; set; }    
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Lanches.Models;
 using Lanches.Repositories.Interfaces;
+using Lanches.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lanches.Controllers
@@ -17,7 +18,35 @@ namespace Lanches.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var itens = _carrinhoCompra.GetCarrinhoCompraItens();
+            _carrinhoCompra.CarrinhoCompraItems = itens;
+
+            var carrinhoCompraVM = new CarrinhoCompraViewModel
+            {
+                CarrinhoCompra = _carrinhoCompra,
+                CarrinhoCompraTotal = _carrinhoCompra.GetCarrinhoCompraTotal()
+            };
+            return View(carrinhoCompraVM);
+        }
+
+        public IActionResult AdicionarNoCarrinhoCarrinho(int lancheId)
+        {
+            var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(p => p.LancheId == lancheId);
+            if(lancheSelecionado != null)
+            {
+                _carrinhoCompra.AdciionarAoCarrinho(lancheSelecionado);
+            }
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult RemoverItemDoCarrinho (int lancheId)
+        {
+            var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(p => p.LancheId == lancheId);
+            if (lancheSelecionado != null)
+            {
+                _carrinhoCompra.removerDoCarrinho(lancheSelecionado);
+            }
+            return RedirectToAction("Index");
         }
     }
 }
