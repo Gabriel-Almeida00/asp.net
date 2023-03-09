@@ -29,7 +29,7 @@ namespace Lanches.Controllers
             return View(carrinhoCompraVM);
         }
 
-        public IActionResult AdicionarNoCarrinhoCarrinho(int lancheId)
+        public IActionResult AdicionarItemNoCarrinhoCompra(int lancheId)
         {
             var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(p => p.LancheId == lancheId);
             if(lancheSelecionado != null)
